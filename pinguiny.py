@@ -65,7 +65,8 @@ while game:
             speedy *= -1
         if ball.rect.y >= 450:
             speedy *= -1
-
+        if ball.rect.x > 650:
+            finish = True
         crosh_l.reset()
         crosh_r.reset()
         ball.reset()
