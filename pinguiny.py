@@ -33,9 +33,13 @@ class Player(GaveSprite):
             self.rect.y += self.speed
 
 
-ball = GaveSprite('bfrg.png',350,250,50,50,4)   
+ball = GaveSprite('bfrg.png',350,250,50,50,1)   
 crosh_l = Player('kekich.png',600,400,70,100,10)
 crosh_r = Player('kekich.png',30,400,70,100,10)
+
+speedx = 1
+speedy = 1
+
 
 font.init()
 font1 = font.SysFont('Arial',30)
@@ -45,16 +49,24 @@ lose = font1.render('you lose',True,(255, 0, 255))
 
 while game:
     for e in event.get():
+
         if e.type == QUIT:
             game = False
 
     if finish != True:
-
         window.blit(background,(0,0))
-        
+
+        ball.rect.x += speedx
+        ball.rect.y += speedy
+
         crosh_l.update_left()
-        crosh_l.reset()
         crosh_r.update_right()
+        if ball.rect.y <= 0 :
+            speedy *= -1
+        if ball.rect.y >= 450:
+            speedy *= -1
+
+        crosh_l.reset()
         crosh_r.reset()
         ball.reset()
         
